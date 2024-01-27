@@ -1,0 +1,4 @@
+1. Your [...nextauth].ts file should export authOptions separately
+2. Your serverAuth.ts file should use getServerSession(req, res, authOptions) instead of getSession({req})
+3. Modify serverAuth(req) to serverAuth(req, res) everytwhere in your code.
+4. Logout, shutdown the app, login again, everything should work 
