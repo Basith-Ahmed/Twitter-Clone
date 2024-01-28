@@ -20,7 +20,7 @@ export default function RegisterModel() {
 
       //ADD LOGIN
 
-      registerModel.onClose()
+      registerModel.onClose();
     } catch (error) {
       console.log(error);
     } finally {
@@ -28,44 +28,67 @@ export default function RegisterModel() {
     }
   }, [registerModel]);
 
+  const onToggle = useCallback(async () => {
+    if (isLoading) {
+      return;
+    }
+    registerModel.onClose(); //close the reg tab
+    loginModel.onOpen(); //open the login tab
+  }, [isLoading, registerModel, loginModel]); //dependancy array, all the things that are in this callback should be declared in this first
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Input 
-      placeholder="Email"
-      onChange={(event) => setEmail(event.target.value)}
-      value={email}
-      disabled={isLoading}
+      <Input
+        placeholder="Email"
+        onChange={(event) => setEmail(event.target.value)}
+        value={email}
+        disabled={isLoading}
       />
-      <Input 
-      placeholder="Name"
-      onChange={(event) => setName(event.target.value)}
-      value={name}
-      disabled={isLoading}
+      <Input
+        placeholder="Name"
+        onChange={(event) => setName(event.target.value)}
+        value={name}
+        disabled={isLoading}
       />
-      <Input 
-      placeholder="Username"
-      onChange={(event) => setUsername(event.target.value)}
-      value={username}
-      disabled={isLoading}
+      <Input
+        placeholder="Username"
+        onChange={(event) => setUsername(event.target.value)}
+        value={username}
+        disabled={isLoading}
       />
-      <Input 
-      placeholder="Password"
-      onChange={(event) => setPassword(event.target.value)}
-      value={password}
-      disabled={isLoading}
+      <Input
+        placeholder="Password"
+        onChange={(event) => setPassword(event.target.value)}
+        value={password}
+        disabled={isLoading}
       />
     </div>
-  )
+  );
+
+  const footerContent = (
+    <div className="text-neutral-400 text-center mt-4">
+      <p>
+        Already have an account?
+        <span
+          onClick={onToggle}
+          className="text-white cursor-pointer hover:underline ml-1.5"
+        >
+          Sign in
+        </span>
+      </p>
+    </div>
+  );
 
   return (
-    <Model 
-    disabled={isLoading}
-    isOpen={registerModel.isOpen}
-    title="Create an account"
-    actionLabel="Register"
-    onClose={registerModel.onClose}
-    onSubmit={onSubmit}
-    body={bodyContent}
+    <Model
+      disabled={isLoading}
+      isOpen={registerModel.isOpen}
+      title="Create an account"
+      actionLabel="Register"
+      onClose={registerModel.onClose}
+      onSubmit={onSubmit}
+      body={bodyContent}
+      footer={footerContent}
     />
   );
 }
