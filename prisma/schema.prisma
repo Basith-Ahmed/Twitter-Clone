@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+  username String? @unique
+  bio String?
+  email String? @unique
+  emailVerified DateTime?
+  image String? ///this is for nextauth
+  coverImage String?
+  profileImage String? ///we will use this for image
+  hashedpassword String?
+  createdAt DateTime @default(now()) ///it is set as the time when it is created
+  updatedAt DateTime @updatedAt
+  followingIds String[] @db.ObjectId ///[] indicates its an array of that type
+  hasNotification Boolean?
+
+  posts Post[] /// an array of type POSTS
+  comments Comment[]
+  notifications Notification[]
+}
+
+model Post {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String @db.ObjectId
+  likedIds String[] @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade) //ondelete: cascasde means that when the user is deleted all the posts from him are also deleted|| also the userId in post is the id of the user who created it
+
+  comments Comment[] //just like user and post; the post and comment will also have a relation
+}
+
+model Comment {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId String @db.ObjectId
+  postId String @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  body String
+  userId String @db.ObjectId
+  createddate DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+//terminal: npx prisma db push
