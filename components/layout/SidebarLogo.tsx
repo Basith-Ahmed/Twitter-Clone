@@ -10,10 +10,9 @@ export default function SidebarLogo() {
         router.push("/");
       }}
       className="rounded-full 
-    h-14 
-    w-14 
     p-4 
     flex 
+    flex-row
     items-center 
     justify-center 
     hover:bg-blue-300 
@@ -21,6 +20,7 @@ export default function SidebarLogo() {
     cursor-pointer transition"
     >
       <BsTwitter size={28} color="white" />
+      <h1 className="hidden lg:block font-semibold text-white ml-4 text-xl">Twitter</h1>
     </div>
   );
 }
