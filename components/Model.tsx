@@ -13,7 +13,7 @@ interface ModelProps {
   disabled?: boolean;
 }
 
-export default function Modal({
+export default function Model({
   isOpen,
   onClose,
   onSubmit,
