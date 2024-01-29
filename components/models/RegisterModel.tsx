@@ -3,6 +3,9 @@ import useRegisterModel from "@/hooks/useRegisterModel";
 import { useCallback, useState } from "react";
 import Input from "../Input";
 import Model from "../Model";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 export default function RegisterModel() {
   const loginModel = useLoginModel();
@@ -18,15 +21,29 @@ export default function RegisterModel() {
     try {
       setIsLoading(true); //change the button style
 
-      //ADD LOGIN
+      await axios.post("/api/register", {
+        //we call the pages/api/register file and pass these info into it
+        email,
+        password,
+        username,
+        name,
+      });
+
+      toast.success("Account created");
+
+      signIn("credentials", {
+        email,
+        password,
+      });
 
       registerModel.onClose();
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     } finally {
       setIsLoading(false); //eventually put it to false
     }
-  }, [registerModel]);
+  }, [registerModel, email, password, username, name]);
 
   const onToggle = useCallback(async () => {
     if (isLoading) {
