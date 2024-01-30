@@ -75,6 +75,7 @@ export default function RegisterModel() {
       />
       <Input
         placeholder="Password"
+        type="password"
         onChange={(event) => setPassword(event.target.value)}
         value={password}
         disabled={isLoading}

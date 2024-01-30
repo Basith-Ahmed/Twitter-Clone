@@ -3,6 +3,7 @@ import useRegisterModel from "@/hooks/useRegisterModel";
 import { useCallback, useState } from "react";
 import Input from "../Input";
 import Model from "../Model";
+import { signIn } from "next-auth/react";
 
 export default function LoginModel() {
   const loginModel = useLoginModel();
@@ -16,7 +17,10 @@ export default function LoginModel() {
     try {
       setIsLoading(true); //change the button style
 
-      //ADD LOGIN
+      await signIn('credentials', {
+        email,
+        password
+      })
 
       loginModel.onClose();
     } catch (error) {
@@ -24,7 +28,7 @@ export default function LoginModel() {
     } finally {
       setIsLoading(false); //eventually put it to false
     }
-  }, [loginModel]);
+  }, [loginModel, email, password]);
 
   const onToggle = useCallback(async () => {
     if (isLoading) {
@@ -44,6 +48,7 @@ export default function LoginModel() {
       />
       <Input
         placeholder="Password"
+        type="password"
         onChange={(event) => setPassword(event.target.value)}
         value={password}
         disabled={isLoading}
