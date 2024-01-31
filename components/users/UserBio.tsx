@@ -3,6 +3,7 @@ import useUser from "@/hooks/useUser";
 import { format } from "date-fns";
 import { useMemo } from "react";
 import Button from "../Button";
+import { BiCalendar } from "react-icons/bi";
 
 interface UserBioProps {
   userId: string;
@@ -28,6 +29,39 @@ export default function UserBio({ userId }: UserBioProps) {
         ) : (
           <Button label="Follow" onClick={() => {}} />
         )}
+      </div>
+      <div className="mt-8 px-4">
+        <div className="flex flex-col">
+          <p className="text-white text-2xl font-semibold">
+            {fetchedUser?.name}
+          </p>
+          <p className="text-md text-neutral-500">@{fetchedUser?.username}</p>
+        </div>
+        <div className="flex flex-col mt-4">
+          <p className="text-white">{fetchedUser?.bio}</p>
+          <div className="flex flex-row items-center gap-2 mt-4 text-neutral-500">
+            <BiCalendar size={24} className="-ml-1"/>
+            <p>Joined {createdAt}</p>
+          </div>
+        </div>
+        <div className="flex flex-row items-center mt-4 gap-6">
+            <div className="flex flex-row items-center gap-2">
+              <p className="text-white">
+                {fetchedUser?.followingIds?.length}
+              </p>
+              <p className="text-neutral-500">
+                Following
+              </p>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <p className="text-white">
+                {fetchedUser?.followersCount || 0}
+              </p>
+              <p className="text-neutral-500">
+                Followers
+              </p>
+            </div>
+        </div>
       </div>
     </div>
   );
