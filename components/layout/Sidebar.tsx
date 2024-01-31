@@ -46,6 +46,7 @@ export default function Sidebar() {
             />
           ))}
           {currentUser && (
+            
             <SidebarItem onClick={() => signOut()} icon={BiLogOut} label="Logout" />
           )}
           <SidebarTweetButton />

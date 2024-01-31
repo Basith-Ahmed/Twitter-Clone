@@ -42,7 +42,7 @@ export default function Avatar({ userId, isLarge, hasBorder }: AvatarProps) {
           borderRadius: "100%",
         }}
         alt="Avatar"
-        onClick={onClick}
+        onClick={onClick} //on click it will be directed to the users profile page, check above for ref
         src={fetchedUser?.profileImage || "/images/placeholder.png"}
       />
     </div>
