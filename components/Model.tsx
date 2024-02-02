@@ -66,5 +66,5 @@ export default function Model({
         </div>
       </div>
     </>
-  );
+  )
 }
