@@ -54,9 +54,13 @@ export default function Form({ placeholder, isComment, postId }: FormProps) {
               className="disabled:opacity-80 peer resize-none mt-3 w-full bg-black ring-0 outline-none text-[20px] placeholder-neutral-500 text-white"
               placeholder={placeholder}
             ></textarea>
-            <hr className="opacity-0 peer-focus:opacity-100 h-[1px] w-full border-neutral-800 transition"/>
+            <hr className="opacity-0 peer-focus:opacity-100 h-[1px] w-full border-neutral-800 transition" />
             <div className="mt-4 flex flex-row justify-end">
-              <Button disabled={isLoading || !body} onClick={onSubmit} label="Tweet"/>
+              <Button
+                disabled={isLoading || !body} //will be disabled if theres nothing in input or if its loading
+                onClick={onSubmit}
+                label="Tweet"
+              />
             </div>
           </div>
         </div>
