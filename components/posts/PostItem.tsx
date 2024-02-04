@@ -86,7 +86,7 @@ export default function PostItem({ data, userId }: PostItemProps) {
           <div className="flex flex-row items-center mt-3 gap-10">
             <div onClick={onLike} className="flex flex-row items-center text-neutral-500 gap-2 cursor-pointer transition hover:text-red-500">
               <LikeIcon size={20} color={hasLiked? "red" : ""} />
-              <p>{data.comments?.length || 0}</p>
+              <p>{data.likedIds?.length || 0}</p>
             </div>
             <div className="flex flex-row items-center text-neutral-500 gap-2 cursor-pointer transition hover:text-sky-500">
               <AiOutlineMessage size={20} />
