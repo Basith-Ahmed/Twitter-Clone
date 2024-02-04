@@ -25,7 +25,7 @@ export default function useFollow(userId: string) {
     try {
       let request;
       if (isFollowing) {
-        request = () => axios.delete("/api/follow", { data: { userId } });
+        request = () => axios.delete("/api/follow", { params: { userId } });
       } else {
         request = () => axios.post("/api/follow", { userId });
       }
