@@ -1,8 +1,6 @@
-# [App Name] - Connect & Share with the World
+# Twitter - Connect & Share with the World
 
-[App screenshot(s) or logo here]
-
-[App Name] is an engaging social media platform built for connection and self-expression. Dive into a personalized experience where you can:
+Twitter is an engaging social media platform built for connection and self-expression. Dive into a personalized experience where you can:
 
 * **Craft your identity:** Express yourself through a customizable profile with a captivating profile picture, eye-catching cover picture, and a witty bio.
 * **Expand your network:** Connect with friends, discover new people, and follow their updates based on shared interests or username searches.
